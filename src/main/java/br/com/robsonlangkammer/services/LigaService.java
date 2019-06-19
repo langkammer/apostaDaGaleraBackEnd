@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class LigaService {
@@ -21,13 +20,11 @@ public class LigaService {
     public ResultResponseList search(int page,int size) {
         PageRequest pageRequest = PageRequest.of(page,size);
 
-        List<LigasModel> list = repository.search(pageRequest);
-
         ResultResponseList resultResponseList = new ResultResponseList();
 
         resultResponseList.setTotal(pageRequest.getPageSize());
 
-        resultResponseList.setData(list);
+        resultResponseList.setData(repository.search(pageRequest));
 
         return resultResponseList;
     }

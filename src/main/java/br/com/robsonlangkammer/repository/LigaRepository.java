@@ -12,6 +12,5 @@ public interface LigaRepository extends JpaRepository<LigasModel, Long> {
 
 
     @Query("FROM LigasModel c ")
-    List<LigasModel> search(
-        Pageable pageable);
+    List<Object> search(Pageable pageable);
 }

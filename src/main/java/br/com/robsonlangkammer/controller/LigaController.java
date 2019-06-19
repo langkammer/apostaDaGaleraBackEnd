@@ -1,6 +1,7 @@
 package br.com.robsonlangkammer.controller;
 
 import br.com.robsonlangkammer.bean.EvenlopResponse;
+import br.com.robsonlangkammer.bean.ResultResponseList;
 import br.com.robsonlangkammer.model.GruposModel;
 import br.com.robsonlangkammer.model.LigasModel;
 import br.com.robsonlangkammer.repository.GrupoRepository;
@@ -31,7 +32,9 @@ public class LigaController extends ResponseFactory {
         @RequestParam(value = "page", required = false, defaultValue = "0") int page,
         @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 
-        return returnEnvelopSucesso(service.search(page, size),"Operação Realizada com Sucesso");
+        ResultResponseList r = service.search(page, size);
+
+        return returnEnvelopSucessoList(r.getData(),r.getTotal(),"Operação Realizada com Sucesso");
 
 
     }
