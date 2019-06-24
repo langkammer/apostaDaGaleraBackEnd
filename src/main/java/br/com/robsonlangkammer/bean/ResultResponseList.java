@@ -8,11 +8,11 @@ import java.util.List;
 public class ResultResponseList {
     private List<Object> data;
 
-    private int total;
+    private long total;
     public ResultResponseList() {
 
     }
-    public ResultResponseList(List<Object> data, int total) {
+    public ResultResponseList(List<Object> data, long total) {
         this.data = data;
         this.total = total;
     }
@@ -25,11 +25,11 @@ public class ResultResponseList {
         this.data = data;
     }
 
-    public int getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 }

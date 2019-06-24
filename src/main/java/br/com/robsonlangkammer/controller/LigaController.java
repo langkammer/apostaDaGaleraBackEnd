@@ -32,7 +32,7 @@ public class LigaController extends ResponseFactory {
         @RequestParam(value = "page", required = false, defaultValue = "0") int page,
         @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 
-        ResultResponseList r = service.search(page, size);
+        ResultResponseList r = service.search(page, size,"");
 
         return returnEnvelopSucessoList(r.getData(),r.getTotal(),"Operação Realizada com Sucesso");
 

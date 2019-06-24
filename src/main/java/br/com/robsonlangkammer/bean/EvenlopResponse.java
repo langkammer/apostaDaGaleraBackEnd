@@ -13,9 +13,9 @@ public class EvenlopResponse {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
-    private int total;
+    private long total;
 
-    public EvenlopResponse(StatusResponseEnum status,int total, String menssage, Object data) {
+    public EvenlopResponse(StatusResponseEnum status,long total, String menssage, Object data) {
         this.status = status;
         this.menssage = menssage;
         this.data = data;
@@ -53,7 +53,7 @@ public class EvenlopResponse {
         this.data = data;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 

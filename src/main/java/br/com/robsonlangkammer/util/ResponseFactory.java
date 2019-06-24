@@ -9,7 +9,7 @@ public class ResponseFactory  {
         return new EvenlopResponse(StatusResponseEnum.SUCESSO,msg,o);
     }
 
-    public EvenlopResponse returnEnvelopSucessoList(Object o,int total,String msg){
+    public EvenlopResponse returnEnvelopSucessoList(Object o,long total,String msg){
         return new EvenlopResponse(StatusResponseEnum.SUCESSO,total,msg,o);
     }
 
