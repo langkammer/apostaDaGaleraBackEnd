@@ -13,13 +13,17 @@ public class EvenlopResponse {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
-    private long total;
+    private long totalElements;
 
-    public EvenlopResponse(StatusResponseEnum status,long total, String menssage, Object data) {
+    private long totalPages;
+
+    public EvenlopResponse(StatusResponseEnum status,long totalPages,long totalElements, String menssage, Object data) {
         this.status = status;
         this.menssage = menssage;
         this.data = data;
-        this.total = total;
+        this.totalPages = totalPages;
+        this.totalElements = totalElements;
+
     }
 
     public EvenlopResponse(StatusResponseEnum status, String menssage, Object data) {
@@ -53,11 +57,19 @@ public class EvenlopResponse {
         this.data = data;
     }
 
-    public long getTotal() {
-        return total;
+    public long getTotalElements() {
+        return totalElements;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setTotalElements(long totalElements) {
+        this.totalElements = totalElements;
+    }
+
+    public long getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(long totalPages) {
+        this.totalPages = totalPages;
     }
 }

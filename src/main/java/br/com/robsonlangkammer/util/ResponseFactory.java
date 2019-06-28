@@ -9,8 +9,8 @@ public class ResponseFactory  {
         return new EvenlopResponse(StatusResponseEnum.SUCESSO,msg,o);
     }
 
-    public EvenlopResponse returnEnvelopSucessoList(Object o,long total,String msg){
-        return new EvenlopResponse(StatusResponseEnum.SUCESSO,total,msg,o);
+    public EvenlopResponse returnEnvelopSucessoList(Object o,long totalPages,long totalElements,String msg){
+        return new EvenlopResponse(StatusResponseEnum.SUCESSO,totalPages,totalElements,msg,o);
     }
 
     public EvenlopResponse returnEnvelopError(String msg){

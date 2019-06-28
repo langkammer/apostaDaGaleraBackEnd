@@ -30,13 +30,12 @@ public class LigaController extends ResponseFactory {
     @GetMapping("/liga/list")
     public EvenlopResponse search(
         @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-        @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+        @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+        @RequestParam(value = "nome", required = false, defaultValue = "") String nome) {
 
-        ResultResponseList r = service.search(page, size,"");
+        ResultResponseList r = service.search(page, size,nome);
 
-        return returnEnvelopSucessoList(r.getData(),r.getTotal(),"Operação Realizada com Sucesso");
-
-
+        return returnEnvelopSucessoList(r.getData(),r.getTotalPages(),r.getTotalElements(),"Operação Realizada com Sucesso");
     }
 
     @GetMapping("/liga/all")
@@ -50,13 +49,13 @@ public class LigaController extends ResponseFactory {
             return returnEnvelopSucesso(ligaRepository.save(liga),"Operação Realizada com Sucesso");
         }
         catch (Exception e){
-            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
+            return returnEnvelopError("Erro ao realizar a Operação " + e.getMessage());
 
         }
     }
 
 
-    @DeleteMapping(path = "/liga/delete")
+    @PostMapping(path = "/liga/delete")
     public EvenlopResponse delete(@RequestBody LigasModel liga){
         try{
             ligaRepository.delete(liga);

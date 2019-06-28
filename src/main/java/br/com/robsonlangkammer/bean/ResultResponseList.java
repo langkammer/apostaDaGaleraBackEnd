@@ -8,13 +8,17 @@ import java.util.List;
 public class ResultResponseList {
     private List<Object> data;
 
-    private long total;
+    private long totalElements;
+    private long totalPages;
+
     public ResultResponseList() {
 
     }
-    public ResultResponseList(List<Object> data, long total) {
+    public ResultResponseList(List<Object> data, long totalPages,long totalElements) {
         this.data = data;
-        this.total = total;
+        this.totalPages = totalPages;
+        this.totalElements = totalElements;
+
     }
 
     public List<Object> getData() {
@@ -25,11 +29,19 @@ public class ResultResponseList {
         this.data = data;
     }
 
-    public Long getTotal() {
-        return total;
+    public long getTotalElements() {
+        return totalElements;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setTotalElements(long totalElements) {
+        this.totalElements = totalElements;
+    }
+
+    public long getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(long totalPages) {
+        this.totalPages = totalPages;
     }
 }

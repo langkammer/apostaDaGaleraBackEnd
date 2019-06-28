@@ -13,10 +13,9 @@ import java.util.List;
 public interface LigaRepository extends JpaRepository<LigasModel, Long> {
 
 
-    @Query("FROM LigasModel c " +
-           "WHERE LOWER(c.nome) like %:searchTerm% ")
-    Page<LigasModel> search(@Param("campo") String searchTerm,   Pageable pageable);
-
+//    @Query("FROM LigasModel c " +
+//           "WHERE c.nome like %:nome% ")
+    Page<LigasModel> findByNomeContaining(@Param("nome") String nome,   Pageable pageable);
 
 
 }

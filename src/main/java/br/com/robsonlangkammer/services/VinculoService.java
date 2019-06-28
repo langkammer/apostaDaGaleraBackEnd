@@ -2,7 +2,9 @@ package br.com.robsonlangkammer.services;
 
 import br.com.robsonlangkammer.bean.ResultResponseList;
 import br.com.robsonlangkammer.model.LigasModel;
+import br.com.robsonlangkammer.model.VinculosModel;
 import br.com.robsonlangkammer.repository.LigaRepository;
+import br.com.robsonlangkammer.repository.VinculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -10,20 +12,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
-public class LigaService {
+public class VinculoService {
 
     @Autowired
-    LigaRepository repository;
+    VinculoRepository repository;
+
     public ResultResponseList search(int page, int size, String campo) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC,  "nome");
         ResultResponseList resultResponseList = new ResultResponseList();
 
-        Page<LigasModel>  listPage = repository.findByNomeContaining(campo, pageRequest);
+        Page<VinculosModel>  listPage = repository.findByNomeContaining(campo, pageRequest);
 
         if(campo.isEmpty()){
             resultResponseList.setTotalElements(repository.count());
@@ -43,7 +45,7 @@ public class LigaService {
         return resultResponseList;
     }
 
-    public Page<LigasModel> findAll() {
+    public Page<VinculosModel> findAll() {
         int page = 0;
         int size = 10;
         PageRequest pageRequest = PageRequest.of(
