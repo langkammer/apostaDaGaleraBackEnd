@@ -77,7 +77,8 @@ public class VinculoController extends ResponseFactory {
     @PostMapping(path = "user/getUserByEmail")
     public EvenlopResponse getUserByEmail(@RequestBody String uid){
         try{
-            return returnEnvelopSucesso(vinculoDao.getUserByUid(uid),"Operação Realizada com sucesso!");
+            VinculosModel v = vinculoRepository.findByEmail(uid);
+            return returnEnvelopSucesso(v, "Operação Realizada com sucesso!");
         }
         catch (Exception e){
             return returnEnvelopError("Erro ao realizar a operacao " + e.getMessage());

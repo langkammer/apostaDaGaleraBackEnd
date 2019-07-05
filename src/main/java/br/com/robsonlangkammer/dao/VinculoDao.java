@@ -46,21 +46,14 @@ public class VinculoDao {
         return vinculosModel;
     }
 
-    public VinculosModel getUserByEmail(String email){
+    public VinculosModel getUserByEmail(String email) throws Exception{
         VinculosModel vinculosModel = new VinculosModel();
         if(email != null){
-            try{
-                TypedQuery<VinculosModel> query =
-                    this.manager.createQuery("select u from VinculosModel u where u.email = :email", VinculosModel.class);
-                query.setParameter("email", email);
+            TypedQuery<VinculosModel> query =
+                this.manager.createQuery("select u from VinculosModel u where u.email = :email", VinculosModel.class);
+            query.setParameter("email", email);
 
-                vinculosModel = query.getSingleResult();
-            }
-            catch (NoResultException nre){
-                vinculosModel = null;
-            }
-
-
+            vinculosModel = query.getSingleResult();
         }
 
         return vinculosModel;

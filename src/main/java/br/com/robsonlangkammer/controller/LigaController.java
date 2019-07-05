@@ -1,7 +1,9 @@
 package br.com.robsonlangkammer.controller;
 
 import br.com.robsonlangkammer.bean.EvenlopResponse;
+import br.com.robsonlangkammer.bean.LigaBean;
 import br.com.robsonlangkammer.bean.ResultResponseList;
+import br.com.robsonlangkammer.bean.TimeBean;
 import br.com.robsonlangkammer.model.GruposModel;
 import br.com.robsonlangkammer.model.LigasModel;
 import br.com.robsonlangkammer.repository.GrupoRepository;
@@ -11,6 +13,8 @@ import br.com.robsonlangkammer.util.ResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -33,9 +37,23 @@ public class LigaController extends ResponseFactory {
         @RequestParam(value = "size", required = false, defaultValue = "10") int size,
         @RequestParam(value = "nome", required = false, defaultValue = "") String nome) {
 
-        ResultResponseList r = service.search(page, size,nome);
+        try{
+            ResultResponseList r = service.search(page, size,nome);
+            return returnEnvelopSucessoList(r.getData(),r.getTotalPages(),r.getTotalElements(),"Operação Realizada com Sucesso");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a Operação " + e.getMessage());
 
-        return returnEnvelopSucessoList(r.getData(),r.getTotalPages(),r.getTotalElements(),"Operação Realizada com Sucesso");
+        }
+
+    }
+
+    @GetMapping("/liga/listAtiva")
+    public EvenlopResponse listAtiva() {
+
+        List<LigasModel> ligasAtivas = ligaRepository.findByStatus(true);
+
+        return returnEnvelopSucesso(ligasAtivas, "Operação Realizada com Sucesso");
     }
 
     @GetMapping("/liga/all")
@@ -44,9 +62,10 @@ public class LigaController extends ResponseFactory {
     }
 
     @PostMapping(path = "/liga/create")
-    public EvenlopResponse save(@RequestBody LigasModel liga){
+    public EvenlopResponse save(@RequestBody LigaBean liga){
         try{
-            return returnEnvelopSucesso(ligaRepository.save(liga),"Operação Realizada com Sucesso");
+            return returnEnvelopSucesso(service.salvarLiga(liga),"Operação Realizada com Sucesso");
+
         }
         catch (Exception e){
             return returnEnvelopError("Erro ao realizar a Operação " + e.getMessage());

@@ -1,15 +1,23 @@
 package br.com.robsonlangkammer.controller;
 
 import br.com.robsonlangkammer.bean.EvenlopResponse;
+import br.com.robsonlangkammer.bean.ResultResponseList;
 import br.com.robsonlangkammer.model.GruposModel;
 import br.com.robsonlangkammer.repository.GrupoRepository;
+import br.com.robsonlangkammer.services.GrupoService;
+import br.com.robsonlangkammer.services.LigaService;
 import br.com.robsonlangkammer.util.ResponseFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @CrossOrigin("*")
 public class GrupoController extends ResponseFactory {
+
+
+    @Autowired
+    GrupoService service;
 
     private final GrupoRepository grupoRepository;
 
@@ -18,10 +26,16 @@ public class GrupoController extends ResponseFactory {
 
     }
 
-    @PostMapping(path = "/grupo/list")
-    public EvenlopResponse list(@RequestBody Integer page){
+    @GetMapping(path = "/grupo/list")
+    public EvenlopResponse search(
+        @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+        @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+        @RequestParam(value = "nome", required = false, defaultValue = "") String nome){
+
         try{
-            return returnEnvelopSucesso(grupoRepository.findAll(),"Operação Realizada com Sucesso");
+            ResultResponseList r = service.search(page, size,nome);
+
+            return returnEnvelopSucessoList(r.getData(), r.getTotalPages(), r.getTotalElements(), "Operação Realizada com Sucesso");
         }
         catch (Exception e){
             return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());

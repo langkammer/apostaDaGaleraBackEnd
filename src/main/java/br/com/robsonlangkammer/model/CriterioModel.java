@@ -20,6 +20,47 @@ public class CriterioModel {
 
     private Integer ponto;
 
+    private boolean bonifica;
 
+    private Integer pontoBonus;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public TipoCriterioEnum getTipoCriterioEnum() {
+        return tipoCriterioEnum;
+    }
+
+    public void setTipoCriterioEnum(TipoCriterioEnum tipoCriterioEnum) {
+        this.tipoCriterioEnum = tipoCriterioEnum;
+    }
+
+    public Integer getPonto() {
+        return ponto;
+    }
+
+    public void setPonto(Integer ponto) {
+        this.ponto = ponto;
+    }
+
+    public boolean isBonifica() {
+        return bonifica;
+    }
+
+    public void setBonifica(boolean bonifica) {
+        this.bonifica = bonifica;
+    }
+
+    public Integer getPontoBonus() {
+        return pontoBonus;
+    }
+
+    public void setPontoBonus(Integer pontoBonus) {
+        this.pontoBonus = pontoBonus;
+    }
 }

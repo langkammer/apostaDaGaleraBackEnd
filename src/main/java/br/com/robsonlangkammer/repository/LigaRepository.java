@@ -12,10 +12,9 @@ import java.util.List;
 
 public interface LigaRepository extends JpaRepository<LigasModel, Long> {
 
+    Page<LigasModel> findByTipoLigaContaining(@Param("tipoLiga") String tipoLiga,   Pageable pageable);
 
-//    @Query("FROM LigasModel c " +
-//           "WHERE c.nome like %:nome% ")
-    Page<LigasModel> findByNomeContaining(@Param("nome") String nome,   Pageable pageable);
+    List<LigasModel> findByStatus(@Param("status") boolean status);
 
 
 }

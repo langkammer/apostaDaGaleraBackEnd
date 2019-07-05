@@ -7,9 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
+
 public interface VinculoRepository extends JpaRepository<VinculosModel, Long> {
 
     Page<VinculosModel> findByNomeContaining(@Param("nome") String nome,   Pageable pageable);
     Page<VinculosModel> findByEmailContaining(@Param("email") String email,   Pageable pageable);
+    VinculosModel findByEmail(@Param("email") String email);
 
 }
