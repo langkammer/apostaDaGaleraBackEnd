@@ -14,7 +14,7 @@ public class LigaBean {
     private boolean status;
     private String edicao;
     private List<TimeBean> equipes;
-
+    private List<RodadaBean> rodadas;
 
     public Long getId() {
         return id;
@@ -78,5 +78,13 @@ public class LigaBean {
 
     public void setEquipes(List<TimeBean> equipes) {
         this.equipes = equipes;
+    }
+
+    public List<RodadaBean> getRodadas() {
+        return rodadas;
+    }
+
+    public void setRodadas(List<RodadaBean> rodadas) {
+        this.rodadas = rodadas;
     }
 }

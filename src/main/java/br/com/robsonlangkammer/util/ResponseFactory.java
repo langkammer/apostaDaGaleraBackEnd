@@ -14,7 +14,7 @@ public class ResponseFactory  {
     }
 
     public EvenlopResponse returnEnvelopError(String msg){
-        return new EvenlopResponse(StatusResponseEnum.SUCESSO,msg);
+        return new EvenlopResponse(StatusResponseEnum.ERRO,msg);
     }
 
 }

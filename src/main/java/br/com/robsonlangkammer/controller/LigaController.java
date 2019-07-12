@@ -1,17 +1,11 @@
 package br.com.robsonlangkammer.controller;
 
-import br.com.robsonlangkammer.bean.EvenlopResponse;
-import br.com.robsonlangkammer.bean.LigaBean;
-import br.com.robsonlangkammer.bean.ResultResponseList;
-import br.com.robsonlangkammer.bean.TimeBean;
-import br.com.robsonlangkammer.model.GruposModel;
+import br.com.robsonlangkammer.bean.*;
 import br.com.robsonlangkammer.model.LigasModel;
-import br.com.robsonlangkammer.repository.GrupoRepository;
 import br.com.robsonlangkammer.repository.LigaRepository;
 import br.com.robsonlangkammer.services.LigaService;
 import br.com.robsonlangkammer.util.ResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +22,6 @@ public class LigaController extends ResponseFactory {
 
     LigaController(LigaRepository ligaRepository) {
         this.ligaRepository = ligaRepository;
-
     }
 
     @GetMapping("/liga/list")
@@ -85,5 +78,8 @@ public class LigaController extends ResponseFactory {
 
         }
     }
+
+
+
 
 }

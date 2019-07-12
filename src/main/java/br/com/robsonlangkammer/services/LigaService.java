@@ -3,6 +3,8 @@ package br.com.robsonlangkammer.services;
 import br.com.robsonlangkammer.bean.LigaBean;
 import br.com.robsonlangkammer.bean.ResultResponseList;
 import br.com.robsonlangkammer.model.LigasModel;
+import br.com.robsonlangkammer.model.PartidaModel;
+import br.com.robsonlangkammer.model.RodadaModel;
 import br.com.robsonlangkammer.model.TimeFutebolModel;
 import br.com.robsonlangkammer.repository.LigaRepository;
 import br.com.robsonlangkammer.repository.TimeFutebolRepository;
@@ -24,6 +26,8 @@ public class LigaService {
     LigaRepository repository;
     @Autowired
     TimeFutebolService timeFutebolService;
+    @Autowired
+    RodadaService rodadaService;
 
     public ResultResponseList search(int page, int size, String campo) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC,  "tipoLiga");
@@ -81,6 +85,8 @@ public class LigaService {
         ligasModel.setStatus(true);
         List<TimeFutebolModel> times = timeFutebolService.createOrFindTimesModel(liga.getEquipes());
         ligasModel.setTimes(times);
+        List<RodadaModel> rodada = rodadaService.criaRodadas(liga.getRodadas());
+        ligasModel.setRodadas(rodada);
 
         repository.saveAndFlush(ligasModel);
 

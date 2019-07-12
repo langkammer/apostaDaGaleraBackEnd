@@ -1,9 +1,7 @@
 package br.com.robsonlangkammer.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by robson on 12/06/19.
@@ -33,6 +31,14 @@ public class GruposModel {
     private CriterioModel criterioSecundario;
 
     private boolean status;
+
+    @OneToMany(cascade = CascadeType.DETACH,
+        fetch = FetchType.LAZY)
+    private List<TimeFutebolModel> times;
+
+    public GruposModel(){
+
+    }
 
     public Long getId() {
         return id;
@@ -96,5 +102,13 @@ public class GruposModel {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<TimeFutebolModel> getTimes() {
+        return times;
+    }
+
+    public void setTimes(List<TimeFutebolModel> times) {
+        this.times = times;
     }
 }

@@ -14,6 +14,7 @@ import java.util.List;
  */
 @Entity
 public class LigasModel {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -30,6 +31,14 @@ public class LigasModel {
 
     private boolean status = true;
 
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY)
+    private List<TimeFutebolModel> times;
+
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY)
+    private List<RodadaModel> rodadas;
+
     public LigasModel(){
 
     }
@@ -40,9 +49,6 @@ public class LigasModel {
         this.edicao = liga.getEdicao();
     }
 
-    @OneToMany(cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY)
-    private List<TimeFutebolModel> times;
 
     public Long getId() {
         return id;
@@ -106,5 +112,13 @@ public class LigasModel {
 
     public void setTimes(List<TimeFutebolModel> times) {
         this.times = times;
+    }
+
+    public List<RodadaModel> getRodadas() {
+        return rodadas;
+    }
+
+    public void setRodadas(List<RodadaModel> rodadas) {
+        this.rodadas = rodadas;
     }
 }

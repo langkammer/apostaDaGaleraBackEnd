@@ -25,6 +25,39 @@ public class MembroGruposModel {
 
     private Date dataEntrada;
 
+    public MembroGruposModel(){
 
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public VinculosModel getVinculo() {
+        return vinculo;
+    }
+
+    public void setVinculo(VinculosModel vinculo) {
+        this.vinculo = vinculo;
+    }
+
+    public GruposModel getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GruposModel grupo) {
+        this.grupo = grupo;
+    }
+
+    public Date getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
 }
