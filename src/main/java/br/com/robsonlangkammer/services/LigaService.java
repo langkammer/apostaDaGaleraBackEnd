@@ -80,10 +80,11 @@ public class LigaService {
 
         LigasModel ligasModel = new LigasModel(liga);
 
-        ligasModel.setQtdRodadas(38);
+        ligasModel.setQtdRodadas(liga.getQtdRodadas());
+        ligasModel.setRodadaAtual(liga.getRodadaAtual());
         ligasModel.setFormatoLiga("TABELA");
         ligasModel.setStatus(true);
-        List<TimeFutebolModel> times = timeFutebolService.createOrFindTimesModel(liga.getEquipes());
+        List<TimeFutebolModel> times = timeFutebolService.createOrFindTimesModel(liga.getTimes());
         ligasModel.setTimes(times);
         List<RodadaModel> rodada = rodadaService.criaRodadas(liga.getRodadas());
         ligasModel.setRodadas(rodada);
@@ -99,7 +100,7 @@ public class LigaService {
         ligasModel.setQtdRodadas(8);
         ligasModel.setFormatoLiga("MATA-MATA");
         ligasModel.setStatus(true);
-        List<TimeFutebolModel> times = timeFutebolService.createOrFindTimesModel(liga.getEquipes());
+        List<TimeFutebolModel> times = timeFutebolService.createOrFindTimesModel(liga.getTimes());
         ligasModel.setTimes(times);
 
         repository.saveAndFlush(ligasModel);

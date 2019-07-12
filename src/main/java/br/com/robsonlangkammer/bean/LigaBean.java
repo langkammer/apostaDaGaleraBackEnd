@@ -9,11 +9,12 @@ public class LigaBean {
     private Long id;
     private String logoLigatring;
     private Integer qtdRodadas;
+    private Integer rodadaAtual;
     private String tipoLiga;
     private String formatoLiga;
     private boolean status;
     private String edicao;
-    private List<TimeBean> equipes;
+    private List<TimeBean> times;
     private List<RodadaBean> rodadas;
 
     public Long getId() {
@@ -38,6 +39,14 @@ public class LigaBean {
 
     public void setQtdRodadas(Integer qtdRodadas) {
         this.qtdRodadas = qtdRodadas;
+    }
+
+    public Integer getRodadaAtual() {
+        return rodadaAtual;
+    }
+
+    public void setRodadaAtual(Integer rodadaAtual) {
+        this.rodadaAtual = rodadaAtual;
     }
 
     public String getTipoLiga() {
@@ -72,12 +81,12 @@ public class LigaBean {
         this.edicao = edicao;
     }
 
-    public List<TimeBean> getEquipes() {
-        return equipes;
+    public List<TimeBean> getTimes() {
+        return times;
     }
 
-    public void setEquipes(List<TimeBean> equipes) {
-        this.equipes = equipes;
+    public void setTimes(List<TimeBean> times) {
+        this.times = times;
     }
 
     public List<RodadaBean> getRodadas() {

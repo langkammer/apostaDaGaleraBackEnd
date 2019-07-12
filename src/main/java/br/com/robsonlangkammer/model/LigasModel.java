@@ -25,6 +25,8 @@ public class LigasModel {
 
     private Integer qtdRodadas;
 
+    private Integer rodadaAtual;
+
     private String formatoLiga;
 
     private String edicao;
@@ -48,7 +50,6 @@ public class LigasModel {
         this.logoLigatring = liga.getLogoLigatring();
         this.edicao = liga.getEdicao();
     }
-
 
     public Long getId() {
         return id;
@@ -80,6 +81,14 @@ public class LigasModel {
 
     public void setQtdRodadas(Integer qtdRodadas) {
         this.qtdRodadas = qtdRodadas;
+    }
+
+    public Integer getRodadaAtual() {
+        return rodadaAtual;
+    }
+
+    public void setRodadaAtual(Integer rodadaAtual) {
+        this.rodadaAtual = rodadaAtual;
     }
 
     public String getFormatoLiga() {

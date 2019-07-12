@@ -7,6 +7,7 @@ import br.com.robsonlangkammer.bean.ResultResponseList;
 import br.com.robsonlangkammer.model.GruposModel;
 import br.com.robsonlangkammer.model.MembroGruposModel;
 import br.com.robsonlangkammer.repository.GrupoRepository;
+import br.com.robsonlangkammer.repository.LigaRepository;
 import br.com.robsonlangkammer.services.GrupoService;
 import br.com.robsonlangkammer.services.LigaService;
 import br.com.robsonlangkammer.util.ResponseFactory;
@@ -25,8 +26,12 @@ public class GrupoController extends ResponseFactory {
 
     private final GrupoRepository grupoRepository;
 
-    GrupoController(GrupoRepository grupoRepository) {
+    private final LigaRepository ligaRepository;
+
+
+    GrupoController(GrupoRepository grupoRepository,LigaRepository ligaRepository) {
         this.grupoRepository = grupoRepository;
+        this.ligaRepository = ligaRepository;
 
     }
 
@@ -130,16 +135,18 @@ public class GrupoController extends ResponseFactory {
     }
 
 
-//    @PostMapping(path = "/grupo/grupoByRodada")
-//    public EvenlopResponse grupoByRodada(@RequestBody LigaByGrupoAndRodadaBean rodada){
-//        try{
-//            grupoRepository.delete(liga);
-//            return returnEnvelopSucesso("","Operação Realizada com Sucesso");
-//        }
-//        catch (Exception e){
-//            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
-//
-//        }
-//    }
+    @GetMapping(path = "/grupo/grupoByRodada")
+    public EvenlopResponse grupoByRodada(@RequestParam Long idGrupo,@RequestParam Integer rodada){
+        try{
+            GruposModel g = grupoRepository.findById(idGrupo).get();
+            if(rodada==null)
+                rodada = g.getLigaModel().getRodadaAtual();
+            return returnEnvelopSucesso(ligaRepository.getLigaByRodada(g.getLigaModel().getId(), rodada), "Operação Realizada com Sucesso");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
+
+        }
+    }
 
 }
