@@ -1,6 +1,9 @@
 package br.com.robsonlangkammer.bean;
 
+import br.com.robsonlangkammer.model.LigasModel;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by robson on 05/07/19.
@@ -16,6 +19,27 @@ public class LigaBean {
     private String edicao;
     private List<TimeBean> times;
     private List<RodadaBean> rodadas;
+
+    public LigaBean(){
+
+    }
+
+    public LigaBean(LigasModel l){
+        this.id = l.getId();
+        this.logoLigatring = l.getLogoLigatring();
+        this.qtdRodadas = l.getQtdRodadas();
+        this.rodadaAtual = l.getRodadaAtual();
+        this.tipoLiga = l.getTipoLiga();
+        this.formatoLiga = l.getFormatoLiga();
+        this.status = l.isStatus();
+        this.edicao = l.getEdicao();
+        this.times = TimeBean.converterList(l.getTimes());
+        this.rodadas = RodadaBean.converterList(l.getRodadas());
+    }
+
+    public static List<LigaBean> converterList(List<LigasModel> list){
+        return list.stream().map(LigaBean::new).collect(Collectors.toList());
+    }
 
     public Long getId() {
         return id;

@@ -24,6 +24,9 @@ public class GrupoController extends ResponseFactory {
     GrupoService service;
 
 
+    @Autowired
+    LigaService ligaService;
+
     private final GrupoRepository grupoRepository;
 
     private final LigaRepository ligaRepository;
@@ -134,14 +137,25 @@ public class GrupoController extends ResponseFactory {
         }
     }
 
+//
+//    @GetMapping(path = "/grupo/grupoByRodada")
+//    public EvenlopResponse grupoByRodada(@RequestParam Long idGrupo,@RequestParam Integer rodada){
+//        try{
+//            GruposModel g = grupoRepository.findById(idGrupo).get();
+//            if(rodada==null)
+//                rodada = g.getLigaModel().getRodadaAtual();
+//            return returnEnvelopSucesso(ligaRepository.getLigaByRodada(g.getLigaModel().getId(), rodada), "Operação Realizada com Sucesso");
+//        }
+//        catch (Exception e){
+//            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
+//
+//        }
+//    }
 
     @GetMapping(path = "/grupo/grupoByRodada")
     public EvenlopResponse grupoByRodada(@RequestParam Long idGrupo,@RequestParam Integer rodada){
         try{
-            GruposModel g = grupoRepository.findById(idGrupo).get();
-            if(rodada==null)
-                rodada = g.getLigaModel().getRodadaAtual();
-            return returnEnvelopSucesso(ligaRepository.getLigaByRodada(g.getLigaModel().getId(), rodada), "Operação Realizada com Sucesso");
+            return returnEnvelopSucesso(ligaService.carregarResultados(idGrupo, rodada), "Operação Realizada com Sucesso");
         }
         catch (Exception e){
             return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());

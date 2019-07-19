@@ -80,6 +80,18 @@ public class LigaController extends ResponseFactory {
     }
 
 
+    @GetMapping(path = "/liga/getByID")
+    public EvenlopResponse getByID(@RequestParam  Long id){
+        try{
+
+            return returnEnvelopSucesso(service.carregaligaBeanById(id),"Operação Realizada com Sucesso");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
+
+        }
+    }
+
 
 
 }

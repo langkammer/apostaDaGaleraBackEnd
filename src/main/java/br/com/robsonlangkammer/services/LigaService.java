@@ -2,12 +2,9 @@ package br.com.robsonlangkammer.services;
 
 import br.com.robsonlangkammer.bean.LigaBean;
 import br.com.robsonlangkammer.bean.ResultResponseList;
-import br.com.robsonlangkammer.model.LigasModel;
-import br.com.robsonlangkammer.model.PartidaModel;
-import br.com.robsonlangkammer.model.RodadaModel;
-import br.com.robsonlangkammer.model.TimeFutebolModel;
+import br.com.robsonlangkammer.model.*;
+import br.com.robsonlangkammer.repository.GrupoRepository;
 import br.com.robsonlangkammer.repository.LigaRepository;
-import br.com.robsonlangkammer.repository.TimeFutebolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,6 +21,8 @@ public class LigaService {
 
     @Autowired
     LigaRepository repository;
+    @Autowired
+    GrupoRepository grupoRepository;
     @Autowired
     TimeFutebolService timeFutebolService;
     @Autowired
@@ -109,6 +108,27 @@ public class LigaService {
 
     }
 
+
+
+    public LigaBean  carregarResultados(Long idGrupo, Integer rodada){
+        LigaBean ligaBean = new LigaBean();
+        GruposModel g = grupoRepository.findById(idGrupo).get();
+        if(g!=null){
+            LigasModel l =  repository.getLigaByRodada(g.getLigaModel().getId(), rodada);
+            ligaBean = new LigaBean(l);
+
+        }
+        return ligaBean;
+    }
+
+
+    public LigaBean  carregaligaBeanById(Long idLiga){
+        LigasModel l = repository.findById(idLiga).get();
+        LigaBean ligaBean = new LigaBean();
+        if(l!=null)
+            ligaBean = new LigaBean(l);
+        return ligaBean;
+    }
 
 
 }
